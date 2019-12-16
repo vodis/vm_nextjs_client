@@ -1,4 +1,4 @@
-import React, { ReactChild, FunctionComponentElement } from "react";
+import React, { ReactChild, FunctionComponentElement, ReactChildren } from "react";
 
 type Props = {
   children: ReactChild;

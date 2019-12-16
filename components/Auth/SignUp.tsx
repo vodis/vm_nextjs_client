@@ -1,24 +1,79 @@
 import * as React from "react";
+import useForm from "../../hooks/useForm";
+ 
+const SignUp = () => {
+  const signup = () => {
+    alert(`User Created!
+           Name: ${inputs.firstName} ${inputs.lastName}
+           Email: ${inputs.email}`);
+  };
 
-export default function SignUp() {
+  const { inputs, handleInputChange, handleSubmit } = useForm(signup);
+
   return (
-    <form>
-      <label htmlFor="firstName">
-        <input type="text" name="firstName" placeholder="firstName" />
-      </label>
-      <label htmlFor="lastName">
-        <input type="text" name="lastName" placeholder="lastName" />
-      </label>
-      <label htmlFor="email">
-        <input type="email" name="email" placeholder="email" />
-      </label>
-      <label htmlFor="password1">
-        <input type="password" name="password1" />
-      </label>
-      <label htmlFor="password2">
-        <input type="password" name="password2" />
-      </label>
-      <button type="submit">Submit</button>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>
+          First Name
+          <input
+            type="text"
+            name="firstName"
+            onChange={handleInputChange}
+            value={inputs.firstName}
+            required
+          />
+        </label>
+        <label>
+          Last Name
+          <input
+            type="text"
+            name="lastName"
+            onChange={handleInputChange}
+            value={inputs.lastName}
+            required
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Email Address
+          <input
+            type="email"
+            name="email"
+            onChange={handleInputChange}
+            value={inputs.email}
+            required
+            autoComplete="username"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Password
+          <input
+            type="password"
+            name="password1"
+            onChange={handleInputChange}
+            value={inputs.password1}
+            autoComplete="current-password"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Re-enter Password
+          <input
+            type="password"
+            name="password2"
+            onChange={handleInputChange}
+            value={inputs.password2}
+            autoComplete="current-password"
+          />
+        </label>
+      </div>
+      <button type="submit">Sign Up</button>
     </form>
   );
 }
+
+export default SignUp;

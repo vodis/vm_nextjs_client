@@ -1,4 +1,4 @@
-import "../media/styles/main.scss";
+import "../static/styles/main.scss";
 import * as React from "react";
 import App from "next/app";
 

@@ -5,4 +5,4 @@ export const rootReducer = combineReducers({
   authReducer
 });
 
-export type RootReducer = ReturnType<typeof rootReducer>;
+export type RootReducerType = ReturnType<typeof rootReducer>;

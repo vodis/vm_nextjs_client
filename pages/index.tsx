@@ -1,5 +1,7 @@
 import * as React from "react";
 import { NextPage } from "next";
+import { useDispatch } from "react-redux";
+import { withRedux } from "../providers/withRedux";
 
 import Layout from "../components/Layout/Layout";
 import Form from "../components/Form/Form";
@@ -7,10 +9,14 @@ import SignUp from "../components/Auth/SignUp";
 import Login from "../components/Auth/Login";
 import Logout from "../components/Auth/Logout";
 
-const IndexPage: NextPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>👋</h1>
-  </Layout>
-);
+const IndexPage: NextPage = () => {
+  const dispatch = useDispatch();
+  return <Layout>Boom</Layout>;
+};
 
-export default IndexPage;
+IndexPage.getInitialProps = ({ reduxStore }: any) => {
+  const { dispatch } = reduxStore;
+  return {};
+};
+
+export default withRedux(IndexPage);

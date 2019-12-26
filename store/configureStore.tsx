@@ -7,10 +7,10 @@ declare global {
   }
 }
 
-const enhance = compose(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose);
+// const enhance = compose(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose);
 
 export default function configureStore(initialState = {}) {
-  const store = createStore(rootReducer, initialState, enhance);
+  const store = createStore(rootReducer, initialState);
 
   return store;
 }

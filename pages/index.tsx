@@ -1,21 +1,38 @@
-import * as React from "react";
-import { NextPage } from "next";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { withRedux } from "../providers/withRedux";
+import useInterval from "../hooks/useInterval";
+import Clock from "../components/clock";
+import Counter from "../components/counter";
 
-import Layout from "../components/Layout/Layout";
-import Form from "../components/Form/Form";
-import SignUp from "../components/Auth/SignUp";
-import Login from "../components/Auth/Login";
-import Logout from "../components/Auth/Logout";
-
-const IndexPage: NextPage = () => {
+const IndexPage = () => {
+  // Tick the time every second
   const dispatch = useDispatch();
-  return <Layout>Boom</Layout>;
+  useInterval(() => {
+    dispatch({
+      type: "TICK",
+      light: true,
+      lastUpdate: Date.now()
+    });
+  }, 1000);
+  return (
+    <>
+      <Clock />
+      <Counter />
+    </>
+  );
 };
 
 IndexPage.getInitialProps = ({ reduxStore }: any) => {
+  // Tick the time once, so we'll have a
+  // valid time before first render
   const { dispatch } = reduxStore;
+  dispatch({
+    type: "TICK",
+    light: typeof window === "object",
+    lastUpdate: Date.now()
+  });
+
   return {};
 };
 

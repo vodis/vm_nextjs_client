@@ -1,16 +1,44 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import { rootReducer } from "../reducers/root.reducer";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+const initialState = {
+  lastUpdate: 0,
+  light: false,
+  count: 0
+};
+
+const reducer = (state = initialState, action: any) => {
+  switch (action.type) {
+    case "TICK":
+      return {
+        ...state,
+        lastUpdate: action.lastUpdate,
+        light: !!action.light
+      };
+    case "INCREMENT":
+      return {
+        ...state,
+        count: state.count + 1
+      };
+    case "DECREMENT":
+      return {
+        ...state,
+        count: state.count - 1
+      };
+    case "RESET":
+      return {
+        ...state,
+        count: initialState.count
+      };
+    default:
+      return state;
   }
-}
+};
 
-// const enhance = compose(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose);
-
-export default function configureStore(initialState = {}) {
-  const store = createStore(rootReducer, initialState);
-
-  return store;
-}
+export const initializeStore = (preloadedState = initialState) => {
+  return createStore(
+    reducer,
+    preloadedState,
+    composeWithDevTools(applyMiddleware())
+  );
+};

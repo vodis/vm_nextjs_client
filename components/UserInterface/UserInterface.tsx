@@ -14,11 +14,13 @@ export default function UserInterface() {
         </li>
         <li className="interface__user-menu"></li>
       </ul>
-      <div className="interface__dashboard">
-        <div className="interface__dashboard-form">
-          <Form>
-            <SignUp />
-          </Form>
+      <div className="interface__popup">
+        <div className="interface__popup-form">
+          <div className="interface__popup-form--box">
+            <Form>
+              <SignUp />
+            </Form>
+          </div>
         </div>
       </div>
     </div>

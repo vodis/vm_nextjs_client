@@ -1,6 +1,6 @@
 import * as React from "react";
 import useForm from "../../hooks/useForm";
- 
+
 const SignUp = () => {
   const signup = () => {
     alert(`User Created!
@@ -74,6 +74,6 @@ const SignUp = () => {
       <button type="submit">Sign Up</button>
     </form>
   );
-}
+};
 
 export default SignUp;

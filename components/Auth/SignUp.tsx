@@ -4,7 +4,7 @@ import useForm from "../../hooks/useForm";
 const SignUp = () => {
   const signup = () => {
     alert(`User Created!
-           Name: ${inputs.firstName} ${inputs.lastName}
+           Password: ${inputs.password} ${inputs.rePassword}
            Email: ${inputs.email}`);
   };
 
@@ -12,66 +12,43 @@ const SignUp = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          First Name
-          <input
-            type="text"
-            name="firstName"
-            onChange={handleInputChange}
-            value={inputs.firstName}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            type="text"
-            name="lastName"
-            onChange={handleInputChange}
-            value={inputs.lastName}
-            required
-          />
-        </label>
+      <div className="inp-group">
+        <label htmlFor="email">Email Address</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          onChange={handleInputChange}
+          value={inputs.email}
+          required
+          autoComplete="username"
+        />
       </div>
-      <div>
-        <label>
-          Email Address
-          <input
-            type="email"
-            name="email"
-            onChange={handleInputChange}
-            value={inputs.email}
-            required
-            autoComplete="username"
-          />
-        </label>
+      <div className="inp-group">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          onChange={handleInputChange}
+          value={inputs.password1}
+          autoComplete="current-password"
+        />
       </div>
-      <div>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password1"
-            onChange={handleInputChange}
-            value={inputs.password1}
-            autoComplete="current-password"
-          />
-        </label>
+      <div className="inp-group">
+        <label htmlFor="rePassword">Re-enter Password</label>
+        <input
+          type="password"
+          name="rePassword"
+          id="rePassword"
+          onChange={handleInputChange}
+          value={inputs.password2}
+        />
       </div>
-      <div>
-        <label>
-          Re-enter Password
-          <input
-            type="password"
-            name="password2"
-            onChange={handleInputChange}
-            value={inputs.password2}
-            autoComplete="current-password"
-          />
-        </label>
+      <div className="btn-group">
+        <button className="btn-group__submit" type="submit">Sign Up</button>
+        <p className="btn-group__helper">Forgot your password?</p>
       </div>
-      <button type="submit">Sign Up</button>
     </form>
   );
 };

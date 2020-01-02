@@ -1,17 +1,17 @@
 import * as React from "react";
 import Link from "next/link";
+import MainMenu from "../MainMenu/MainMenu";
 import UserInterfaces from "../UserInterface/UserInterface";
 
 import "./Navbar.scss";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <div>Logo</div>
-      <div>Categories</div>
+    <div className="navbar">
+      <MainMenu />
       <div>Search</div>
       <UserInterfaces />
-    </nav>
+    </div>
   );
 };
 

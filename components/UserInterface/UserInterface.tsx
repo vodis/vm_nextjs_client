@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import "./UserInterface.scss";
 import { IconMessageBell } from "../../static/img/icons";
@@ -16,9 +16,9 @@ export default function UserInterface() {
       return setIsOpen(true);
     }
     setIsOpen(false);
-  }
+  };
 
-  const [isSelectForm, setIsSelectForm]: any = useState('signup');
+  const [isSelectForm, setIsSelectForm]: any = useState("signup");
 
   return (
     <div className="interface">
@@ -27,16 +27,28 @@ export default function UserInterface() {
           <IconMessageBell />
         </li>
         <li className="interface__user-menu" onClick={() => togglePopup()}>
-          <img className="user-avatar" src="../../static/img/logo_guest.png" alt=""/>
+          <img
+            className="user-avatar"
+            src="../../static/img/logo_guest.png"
+            alt=""
+          />
         </li>
       </ul>
-      <div className={classNames('interface__popup', {'active': isOpen})}>
+      <div className={classNames("interface__popup", { active: isOpen })}>
         <div className="interface__popup-form">
-          <div className="interface__popup-form--box">
+          <div className="interface__popup-form-box">
             <Form title={isSelectForm} handleClose={() => togglePopup()}>
-              { isSelectForm === 'signup' && <SignUp handleSelect={(form: string) => setIsSelectForm(form)} /> }
-              { isSelectForm === 'login' && <Login handleSelect={(form: string) => setIsSelectForm(form)}/> }
-              { isSelectForm === 'password reset' && <Reset handleSelect={(form: string) => setIsSelectForm(form)}/> }
+              {isSelectForm === "signup" && (
+                <SignUp
+                  handleSelect={(form: string) => setIsSelectForm(form)}
+                />
+              )}
+              {isSelectForm === "login" && (
+                <Login handleSelect={(form: string) => setIsSelectForm(form)} />
+              )}
+              {isSelectForm === "password reset" && (
+                <Reset handleSelect={(form: string) => setIsSelectForm(form)} />
+              )}
             </Form>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import useForm from "../../hooks/useForm";
 
-const Login = () => {
+const Login = (props: any): any => {
   const login = () => {
     alert(`User Created!
            Name: ${inputs.firstName} ${inputs.lastName}
@@ -11,34 +11,42 @@ const Login = () => {
   const { inputs, handleInputChange, handleSubmit } = useForm(login);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Email Address
+    <>
+      <div className="subtitle">
+        <ul className="subtitle__list">
+          <li className="subtitle__list-pointer">Login to account</li>
+          <li className="subtitle__list-section" onClick={() => props.handleSelect('signup')}>Create account</li>
+        </ul>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div className="inp-group">
+          <label htmlFor="email">Email Address</label>
           <input
             type="email"
             name="email"
+            id="email"
             onChange={handleInputChange}
             value={inputs.email}
             required
             autoComplete="username"
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Password
+        </div>
+        <div className="inp-group">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
-            name="password1"
+            name="password"
+            id="password"
             onChange={handleInputChange}
             value={inputs.password1}
-            autoComplete="current-password"
           />
-        </label>
-      </div>
-      <button type="submit">Login</button>
-    </form>
+        </div>
+        <div className="btn-group">
+          <button className="btn-group__submit" type="submit">Login</button>
+          <p className="btn-group__helper" onClick={() => props.handleSelect('password reset')}>Forgot your password?</p>
+        </div>
+      </form>
+    </>
   );
 };
 

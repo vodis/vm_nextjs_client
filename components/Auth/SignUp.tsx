@@ -1,7 +1,7 @@
-import * as React from "react";
+import React, { FunctionComponentElement } from "react";
 import useForm from "../../hooks/useForm";
 
-const SignUp = () => {
+const SignUp = (props: any): any => {
   const signup = () => {
     alert(`User Created!
            Password: ${inputs.password} ${inputs.rePassword}
@@ -11,45 +11,51 @@ const SignUp = () => {
   const { inputs, handleInputChange, handleSubmit } = useForm(signup);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="inp-group">
-        <label htmlFor="email">Email Address</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleInputChange}
-          value={inputs.email}
-          required
-          autoComplete="username"
-        />
+    <>
+      <div className="subtitle">
+        <ul className="subtitle__list">
+          <li className="subtitle__list-pointer">Create account</li>
+          <li className="subtitle__list-section" onClick={() => props.handleSelect('login')}>Login to account</li>
+        </ul>
       </div>
-      <div className="inp-group">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleInputChange}
-          value={inputs.password1}
-          autoComplete="current-password"
-        />
-      </div>
-      <div className="inp-group">
-        <label htmlFor="rePassword">Re-enter Password</label>
-        <input
-          type="password"
-          name="rePassword"
-          id="rePassword"
-          onChange={handleInputChange}
-          value={inputs.password2}
-        />
-      </div>
-      <div className="btn-group">
-        <button className="btn-group__submit" type="submit">Sign Up</button>
-        <p className="btn-group__helper">Forgot your password?</p>
-      </div>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <div className="inp-group">
+          <label htmlFor="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleInputChange}
+            value={inputs.email}
+            required
+            autoComplete="username"
+          />
+        </div>
+        <div className="inp-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleInputChange}
+            value={inputs.password1}
+          />
+        </div>
+        <div className="inp-group">
+          <label htmlFor="rePassword">Re-enter Password</label>
+          <input
+            type="password"
+            name="rePassword"
+            id="rePassword"
+            onChange={handleInputChange}
+            value={inputs.password2}
+          />
+        </div>
+        <div className="btn-group">
+          <button className="btn-group__submit" type="submit">Signup</button>
+        </div>
+      </form>
+    </>
   );
 };
 

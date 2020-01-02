@@ -15,7 +15,12 @@ const SignUp = (props: any): any => {
       <div className="subtitle">
         <ul className="subtitle__list">
           <li className="subtitle__list-pointer">Create account</li>
-          <li className="subtitle__list-section" onClick={() => props.handleSelect('login')}>Login to account</li>
+          <li
+            className="subtitle__list-section"
+            onClick={() => props.handleSelect("login")}
+          >
+            Login to account
+          </li>
         </ul>
       </div>
       <form onSubmit={handleSubmit}>
@@ -28,7 +33,7 @@ const SignUp = (props: any): any => {
             onChange={handleInputChange}
             value={inputs.email}
             required
-            autoComplete="username"
+            autoComplete="email"
           />
         </div>
         <div className="inp-group">
@@ -39,6 +44,7 @@ const SignUp = (props: any): any => {
             id="password"
             onChange={handleInputChange}
             value={inputs.password1}
+            autoComplete="password"
           />
         </div>
         <div className="inp-group">
@@ -49,10 +55,13 @@ const SignUp = (props: any): any => {
             id="rePassword"
             onChange={handleInputChange}
             value={inputs.password2}
+            autoComplete="rePassword"
           />
         </div>
         <div className="btn-group">
-          <button className="btn-group__submit" type="submit">Signup</button>
+          <button className="btn-group__submit" type="submit">
+            Signup
+          </button>
         </div>
       </form>
     </>

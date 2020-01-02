@@ -12,10 +12,7 @@ export default function UserInterface() {
   const [isOpen, setIsOpen]: any = useState(false);
 
   const togglePopup: any = () => {
-    if (!isOpen) {
-      return setIsOpen(true);
-    }
-    setIsOpen(false);
+    setIsOpen(!isOpen);
   };
 
   const [isSelectForm, setIsSelectForm]: any = useState("signup");

@@ -1,11 +1,24 @@
-import * as React from "react";
+import React from "react";
 import useForm from "../../hooks/useForm";
+import fetch from "isomorphic-unfetch";
 
 const Login = (props: any): any => {
-  const login = () => {
-    alert(`User Created!
-           Name: ${inputs.firstName} ${inputs.lastName}
-           Email: ${inputs.email}`);
+  const login = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/auth/login?email=${inputs.email}&password=${inputs.password}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const { inputs, handleInputChange, handleSubmit } = useForm(login);
@@ -15,7 +28,12 @@ const Login = (props: any): any => {
       <div className="subtitle">
         <ul className="subtitle__list">
           <li className="subtitle__list-pointer">Login to account</li>
-          <li className="subtitle__list-section" onClick={() => props.handleSelect('signup')}>Create account</li>
+          <li
+            className="subtitle__list-section"
+            onClick={() => props.handleSelect("signup")}
+          >
+            Create account
+          </li>
         </ul>
       </div>
       <form onSubmit={handleSubmit}>
@@ -28,7 +46,7 @@ const Login = (props: any): any => {
             onChange={handleInputChange}
             value={inputs.email}
             required
-            autoComplete="username"
+            autoComplete="email"
           />
         </div>
         <div className="inp-group">
@@ -39,11 +57,19 @@ const Login = (props: any): any => {
             id="password"
             onChange={handleInputChange}
             value={inputs.password1}
+            autoComplete="password"
           />
         </div>
         <div className="btn-group">
-          <button className="btn-group__submit" type="submit">Login</button>
-          <p className="btn-group__helper" onClick={() => props.handleSelect('password reset')}>Forgot your password?</p>
+          <button className="btn-group__submit" type="submit">
+            Login
+          </button>
+          <p
+            className="btn-group__helper"
+            onClick={() => props.handleSelect("password reset")}
+          >
+            Forgot your password?
+          </p>
         </div>
       </form>
     </>

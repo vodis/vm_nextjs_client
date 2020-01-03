@@ -17,3 +17,6 @@
 
 # DS
 .DS_Store
+
+# Config
+/configuration

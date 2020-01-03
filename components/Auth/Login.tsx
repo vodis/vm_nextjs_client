@@ -1,27 +1,21 @@
 import React from "react";
 import useForm from "../../hooks/useForm";
-import fetch from "isomorphic-unfetch";
+import useDataFetching from "../../hooks/useDataFetching";
 
 const Login = (props: any): any => {
-  const login = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/auth/login?email=${inputs.email}&password=${inputs.password}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
-      );
-      const json = await response.json();
-      console.log(json);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  const login = async () => {};
 
   const { inputs, handleInputChange, handleSubmit } = useForm(login);
+  const {
+    loading,
+    results,
+    error
+  } = useDataFetching(
+    `/auth/login?email=${inputs.email}&password=${inputs.password}`,
+    "POST",
+    { "Content-Type": "application/json" }
+  );
+  console.log(loading, results, error);
 
   return (
     <>

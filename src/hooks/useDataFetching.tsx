@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fetch from "isomorphic-unfetch";
-import { origin } from "../configuration/host.json";
+import { origin } from "../../config/host.json";
 
 const useDataFetching = (url: string, method: string, headers: any) => {
   const [loading, setLoading] = useState(true);

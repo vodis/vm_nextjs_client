@@ -1,0 +1,8 @@
+{
+  "defaultLanguage": "ru",
+  "availableLanguage": ["ru", "en"],
+  "descriptionLanguage": [
+    { "label": "ru", "name": "Русский" },
+    { "label": "en", "name": "English" }
+  ]
+}

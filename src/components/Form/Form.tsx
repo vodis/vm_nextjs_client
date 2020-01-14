@@ -3,7 +3,7 @@ import "./Form.scss";
 
 type Props = {
   title: string;
-  handleClose: Function,
+  handleClose: Function;
   children: ReactNode;
 };
 

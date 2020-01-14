@@ -1,11 +1,11 @@
 import * as React from "react";
 import { NextPage } from "next";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import Layout from "../../modules/admin/components/Layout/Layout";
+import Wrapper from "../../src/components/Wrapper/Wrapper";
+import Layout from "../../src/modules/admin/components/Layout/Layout";
 
 const Admin: NextPage = () => (
   <Wrapper>
-    <Layout />
+    <Layout authorized={false} />
   </Wrapper>
 );
 

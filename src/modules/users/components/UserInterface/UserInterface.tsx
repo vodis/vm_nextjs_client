@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import "./UserInterface.scss";
-import { IconMessageBell } from "../../../../static/img/icons";
+import { IconMessageBell } from "../../../../../static/img/icons";
 import Form from "../../../../components/Form/Form";
 import SignUp from "../../../../components/Auth/SignUp";
 import Login from "../../../../components/Auth/Login";

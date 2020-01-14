@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { timerReducer } from "./timer.reducer";
+import { authReducer } from "../modules/users/reducers/auth.reducer";
 
 export const rootReducer = combineReducers({
-  timerReducer
+  authReducer
 });
 
 export type RootReducerType = ReturnType<typeof rootReducer>;

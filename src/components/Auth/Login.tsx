@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useForm from "../../hooks/useForm";
 import useDataFetching from "../../hooks/useDataFetching";
 
 const Login = (props: any): any => {
-  const login = async () => {};
+  const [url, setUrl] = useState("");
 
-  const { inputs, handleInputChange, handleSubmit } = useForm(login);
-  const {
-    loading,
-    results,
-    error
-  } = useDataFetching(
-    `/auth/login?email=${inputs.email}&password=${inputs.password}`,
-    "POST",
-    { "Content-Type": "application/json" }
-  );
-  console.log(loading, results, error);
+  const { inputs, handleInputChange, handleSubmit } = useForm(() => {
+    setUrl(`auth/login?email=${inputs.email}&password=${inputs.password}`);
+  });
+
+  const { loading, results, error } = useDataFetching(url, "POST", {
+    "Content-Type": "application/json"
+  });
+
+  useEffect(() => {
+    console.log(loading, results, error);
+  }, [loading]);
 
   return (
     <>
@@ -50,7 +50,7 @@ const Login = (props: any): any => {
             name="password"
             id="password"
             onChange={handleInputChange}
-            value={inputs.password1}
+            value={inputs.password}
             autoComplete="password"
           />
         </div>

@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import useForm from "../../hooks/useForm";
+import useDataFetching from "../../hooks/useDataFetching";
+import { saveToLocalSrorage } from "../../utils/localStorage";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -36,6 +37,22 @@ const useStyles = makeStyles(theme => ({
 export default function Admin() {
   const classes = useStyles();
 
+  const [url, setUrl] = useState("");
+
+  const { inputs, handleInputChange, handleSubmit } = useForm(() => {
+    setUrl(`auth/login?email=${inputs.email}&password=${inputs.password}`);
+  });
+
+  const { loading, results, error } = useDataFetching(url, "POST", {
+    "Content-Type": "application/json"
+  });
+
+  useEffect(() => {
+    if (results.token) {
+      saveToLocalSrorage("key", results);
+    }
+  }, [loading]);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -43,10 +60,7 @@ export default function Admin() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -57,6 +71,8 @@ export default function Admin() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleInputChange}
+            value={inputs.email}
           />
           <TextField
             variant="outlined"
@@ -68,10 +84,8 @@ export default function Admin() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={handleInputChange}
+            value={inputs.password}
           />
           <Button
             type="submit"

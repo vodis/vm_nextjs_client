@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useForm from "../../hooks/useForm";
 import useDataFetching from "../../hooks/useDataFetching";
+import Authentication from "../../services/authentication";
 
 const Login = (props: any): any => {
   const [url, setUrl] = useState("");
@@ -14,7 +15,9 @@ const Login = (props: any): any => {
   });
 
   useEffect(() => {
-    console.log(loading, results, error);
+    if (results.token) {
+      Authentication.setSession(results);
+    }
   }, [loading]);
 
   return (

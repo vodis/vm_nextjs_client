@@ -4,5 +4,10 @@
   "descriptionLanguage": [
     { "label": "ru", "name": "Русский" },
     { "label": "en", "name": "English" }
-  ]
+  ],
+  "cookies": {
+    "user": "_vm_user",
+    "jwt": "_vm_jwt",
+    "expiresAt": "_vm_expiresAt"
+  }
 }

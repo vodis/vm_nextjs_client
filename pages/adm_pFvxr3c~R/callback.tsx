@@ -2,10 +2,10 @@ import * as React from "react";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
 import Layout from "../../src/modules/admin/components/Layout/Layout";
 
-const Admin = () => (
+const Callback = () => (
   <Wrapper>
-    <Layout authorized={false} />
+    <h1>Verifying login data</h1>
   </Wrapper>
 );
 
-export default Admin;
+export default Callback;

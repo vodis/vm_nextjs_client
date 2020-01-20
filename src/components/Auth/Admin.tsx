@@ -11,7 +11,7 @@ import Container from "@material-ui/core/Container";
 
 import useForm from "../../hooks/useForm";
 import useDataFetching from "../../hooks/useDataFetching";
-import { saveToLocalSrorage } from "../../utils/localStorage";
+import Authentication from "../../services/authentication";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -49,7 +49,7 @@ export default function Admin() {
 
   useEffect(() => {
     if (results.token) {
-      saveToLocalSrorage("key", results);
+      Authentication.setSession(results);
     }
   }, [loading]);
 

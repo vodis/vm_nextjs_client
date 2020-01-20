@@ -1,5 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
+import CombineRoutes from '../../routes/common.route';
 
 import "./Wrapper.scss";
 
@@ -20,7 +21,9 @@ const Wrapper: React.FunctionComponent<Props> = ({
         content="minimum-scale=1, initial-scale=1, width=device-width"
       />
     </Head>
-    {children}
+    <CombineRoutes>
+      {children}
+    </CombineRoutes>
   </div>
 );
 

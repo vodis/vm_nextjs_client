@@ -1,5 +1,7 @@
 import Cookies from "js-cookie";
+import fetch from "isomorphic-unfetch";
 import { cookies } from "../../config/rules.json";
+import { origin } from "../../config/host.json";
 
 class Authentication {
   getSession(key: string) {
@@ -18,9 +20,18 @@ class Authentication {
     Cookies.remove(cookies.expiresAt);
   }
 
+  handleAuthentication(route: string) {
+    return new Promise((resolve, reject) => {
+      // const data = fetch(`${origin}/${url}`, {
+      //   method,
+      //   headers
+      // });
+    })
+  }
+
   isAuthenticated() {
-    const expiresAt = Cookies.getJSON(cookies.expiresAt);
-    const currentTime = new Date().getTime() / 1000;
+    const expiresAt = Cookies.getJSON(cookies.expiresAt) * 1000;
+    const currentTime = new Date().getTime();
     return currentTime < expiresAt;
   }
 
@@ -36,8 +47,8 @@ class Authentication {
 
       if (!expiresAtCookie) return undefined;
 
-      const expiresAt = expiresAtCookie.split("=")[1];
-      const currentTime = new Date().getTime() / 1000;
+      const expiresAt = expiresAtCookie.split("=")[1] * 1000;
+      const currentTime = new Date().getTime();
       return currentTime < expiresAt;
     }
   }

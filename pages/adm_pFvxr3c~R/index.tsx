@@ -1,11 +1,20 @@
-import * as React from "react";
+import React, { useEffect } from "react";
+import { withRouter } from 'next/router';
 import Wrapper from "../../src/components/Wrapper/Wrapper";
 import Layout from "../../src/modules/admin/components/Layout/Layout";
+import authentication from '../../src/services/authentication';
 
-const Admin = () => (
-  <Wrapper>
-    <Layout authorized={false} />
-  </Wrapper>
-);
+const Admin = (props: any) => {
 
-export default Admin;
+  useEffect(() => {
+    authentication.handleAuthentication(props.route);
+  }, []);
+
+  return (
+    <Wrapper>
+      <Layout authorized={false} />
+    </Wrapper>
+  );
+}
+
+export default withRouter(Admin);

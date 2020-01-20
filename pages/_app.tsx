@@ -12,7 +12,7 @@ export default class NextApp extends App {
       ? Authentication.clientAuth()
       : Authentication.serverAuth(ctx.req);
 
-    console.log(isAuthenticated);
+    console.log('>>>>>', isAuthenticated, router, process.browser);
 
     return { pageProps };
   }

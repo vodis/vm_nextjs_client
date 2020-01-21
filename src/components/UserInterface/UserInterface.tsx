@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 import "./UserInterface.scss";
-import { IconMessageBell } from "../../../../../static/img/icons";
-import Form from "../../../../components/Form/Form";
-import SignUp from "../../../../components/Auth/SignUp";
-import Login from "../../../../components/Auth/Login";
-import Reset from "../../../../components/Auth/Reset";
+import { IconMessageBell } from "../../../static/img/icons";
+import Form from "../Form/Form";
+import SignUp from "../Auth/SignUp";
+import Login from "../Auth/Login";
+import Reset from "../Auth/Reset";
 
 export default function UserInterface() {
   const [isOpen, setIsOpen]: any = useState(false);

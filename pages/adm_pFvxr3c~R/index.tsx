@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
-import { withRouter } from 'next/router';
+import { withRouter } from "next/router";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
-import Layout from "../../src/modules/admin/components/Layout/Layout";
-import authentication from '../../src/services/authentication';
+import Layout from "../../src/components/Layout/Layout";
+import AdminForm from "../../src/components/Auth/Admin";
 
-const Admin = (props: any) => {
+type AdminProps = {
+  route: string;
+  auth?: object;
+};
 
-  useEffect(() => {
-    authentication.handleAuthentication(props.route);
-  }, []);
-
+const Admin: React.FunctionComponent<AdminProps | any> = ({ route, auth }) => {
   return (
-    <Wrapper>
-      <Layout authorized={false} />
+    <Wrapper auth={auth}>
+      <Layout>
+        <AdminForm />
+      </Layout>
     </Wrapper>
   );
-}
+};
 
 export default withRouter(Admin);

@@ -12,13 +12,17 @@ export default class NextApp extends App {
       ? Authentication.clientAuth()
       : Authentication.serverAuth(ctx.req);
 
-    console.log('>>>>>', isAuthenticated, router, process.browser);
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
 
-    return { pageProps };
+    const auth = { isAuthenticated };
+
+    return { pageProps, auth };
   }
 
   render() {
-    const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    const { Component, pageProps, auth }: any = this.props;
+    return <Component {...pageProps} auth={auth} />;
   }
 }

@@ -1,15 +1,21 @@
 import * as React from "react";
 import Head from "next/head";
-import CombineRoutes from "../../routes/common.route";
+
+// import CombineRoutes from "../../routes/common.route";
+import { CombineRoutes } from '../../services/lazy';
+
 
 import "./Wrapper.scss";
 
-type Props = {
+type WrapperProps = {
   title?: string;
-  auth?: object;
+  auth: {
+    isAuthenticated: boolean
+  };
+  router: object;
 };
 
-const Wrapper: React.FunctionComponent<Props> = ({
+const Wrapper: React.FC<WrapperProps> = ({
   children,
   title = "This is the default title",
   auth

@@ -1,37 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "next/router";
-import Authentication from "../services/authentication";
+import { WithRouterProps } from "next/dist/client/with-router";
+import authentication from "../services/authentication";
+import { routes } from '../../config/rules.json';
 
-type WithRouterProps = {
-  router?: object | any;
-  auth?: any;
-};
+type CombineRoutesProps = {
+  auth: {
+    isAuthenticated: boolean
+  };
+}
 
-const CombineRoutes: React.FunctionComponent<WithRouterProps | any> = ({
+const CombineRoutes: React.FC<WithRouterProps & CombineRoutesProps> = ({
   router,
   children,
   auth
 }) => {
-  let routes;
-  if (auth && auth.isAuthenticated) {
-    routes = !router.pathname.match(/adm_pFvxr3c~R/) ? "user" : "admin";
-  } else {
-    routes = "common";
-  }
-
+  const [rules, setRules] = useState('common');
+  
   useEffect(() => {
-    const getPermission = async () => {
-      return await Authentication.checkPermissions("admin");
+    const matches = {
+      'isUserRoute': !!router.pathname.match(new RegExp(routes.protected[0], 'gi')),
+      'isAdminRoute': !!router.pathname.match(new RegExp(routes.protected[1], 'gi')),
     };
-    console.log(getPermission());
+    const getRootRules = matches.isUserRoute 
+    ? 'user'
+    : matches.isAdminRoute && 'admin';
+    
+    if (getRootRules) {
+      setRules(getRootRules);
+    }
+    
+    if (auth.isAuthenticated) {
+      if (getRootRules) {
+        (async function isPermitted() {
+          let result = await authentication.checkPermissions(getRootRules);
+          setPermitted(result[getRootRules]);
+        })();
+      }
+    } else {
+      setPermitted(false);
+    }
   }, []);
+  
+  const [permitted, setPermitted] = useState();
 
-  switch (routes) {
+  switch (rules) {
     case "user":
       console.log("@Route to User");
       break;
     case "admin":
       console.log("@Route to Admin");
+      permitted === true && router.pathname === "/adm_pFvxr3c~R" && router.push('/adm_pFvxr3c~R/dashboard');
+      permitted === false && router.pathname.match(/(\/.+?\/)(.+)/) && router.push('/adm_pFvxr3c~R');
       break;
     default:
       console.log("@Route to Common");

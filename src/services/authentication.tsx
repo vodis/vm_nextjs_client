@@ -32,7 +32,6 @@ class Authentication {
       }
     });
     const result = await data.json();
-    console.log(result);
     return result;
   }
 

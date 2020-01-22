@@ -4,9 +4,16 @@ import Wrapper from "../src/components/Wrapper/Wrapper";
 import Layout from "../src/components/Layout/Layout";
 import Navbar from "../src/components/Navbar/Navbar";
 
-const IndexPage = () => {
+type IndexPageProps = {
+  auth: {
+    isAuthenticated: boolean
+  };
+  router: object;
+};
+
+const IndexPage: React.FC<IndexPageProps> = ({ auth, router }) => {
   return (
-    <Wrapper>
+    <Wrapper auth={auth} router={router} >
       <Layout>
         <header className="header">
           <Navbar />

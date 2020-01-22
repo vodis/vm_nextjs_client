@@ -9,5 +9,11 @@
     "user": "_vm_user",
     "jwt": "_vm_jwt",
     "expiresAt": "_vm_expiresAt"
+  },
+  "routes": {
+    "protected": [
+      "usr_",
+      "adm_"
+    ]
   }
 }

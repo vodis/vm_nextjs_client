@@ -6,7 +6,7 @@ import Authentication from "../src/services/authentication";
 import "../static/styles/main.scss";
 
 export default class NextApp extends App {
-  static async getInitialProps({ Component, router, ctx }: any) {
+  static async getInitialProps({ Component, ctx }: any) {
     let pageProps = {};
     const isAuthenticated = process.browser
       ? Authentication.clientAuth()
@@ -17,7 +17,6 @@ export default class NextApp extends App {
     }
 
     const auth = { isAuthenticated };
-
     return { pageProps, auth };
   }
 

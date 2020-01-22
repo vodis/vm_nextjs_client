@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { withRouter } from "next/router";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
 import Layout from "../../src/components/Layout/Layout";
 import AdminForm from "../../src/components/Auth/Admin";
 
 type AdminProps = {
-  route: string;
-  auth?: object;
+  auth: {
+    isAuthenticated: boolean
+  };
+  router: object;
 };
 
-const Admin: React.FunctionComponent<AdminProps | any> = ({ route, auth }) => {
+const Admin: React.FC<AdminProps> = ({ auth, router }) => {
   return (
-    <Wrapper auth={auth}>
+    <Wrapper auth={auth} router={router} >
       <Layout>
         <AdminForm />
       </Layout>
@@ -19,4 +20,4 @@ const Admin: React.FunctionComponent<AdminProps | any> = ({ route, auth }) => {
   );
 };
 
-export default withRouter(Admin);
+export default Admin;

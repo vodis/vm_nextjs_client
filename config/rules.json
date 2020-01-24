@@ -11,9 +11,8 @@
     "expiresAt": "_vm_expiresAt"
   },
   "routes": {
-    "protected": [
-      "usr_",
-      "adm_"
-    ]
+    "rootUser": "usr_profile",
+    "rootAdmin": "adm_pFvxr3c~R",
+    "protected": ["usr_", "adm_"]
   }
 }

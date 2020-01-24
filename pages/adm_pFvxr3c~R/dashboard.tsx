@@ -3,14 +3,14 @@ import Wrapper from "../../src/components/Wrapper/Wrapper";
 
 type DashboardProps = {
   auth: {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    accessTo: boolean;
   };
-  router: object;
 };
 
-const Dashboard: React.FC<DashboardProps> = ({ auth, router}) => {
+const Dashboard: React.FC<DashboardProps> = ({ auth }) => {
   return (
-    <Wrapper auth={auth} router={router}>
+    <Wrapper auth={auth}>
       <h1>Verifying login</h1>
     </Wrapper>
   );

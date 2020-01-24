@@ -5,14 +5,14 @@ import AdminForm from "../../src/components/Auth/Admin";
 
 type AdminProps = {
   auth: {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    accessTo: boolean;
   };
-  router: object;
 };
 
-const Admin: React.FC<AdminProps> = ({ auth, router }) => {
+const Admin: React.FC<AdminProps> = ({ auth }) => {
   return (
-    <Wrapper auth={auth} router={router} >
+    <Wrapper auth={auth}>
       <Layout>
         <AdminForm />
       </Layout>

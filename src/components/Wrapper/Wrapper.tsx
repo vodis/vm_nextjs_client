@@ -2,17 +2,16 @@ import * as React from "react";
 import Head from "next/head";
 
 // import CombineRoutes from "../../routes/common.route";
-import { CombineRoutes } from '../../services/lazy';
-
+import { CombineRoutes } from "../../services/lazy";
 
 import "./Wrapper.scss";
 
 type WrapperProps = {
   title?: string;
   auth: {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    accessTo: boolean;
   };
-  router: object;
 };
 
 const Wrapper: React.FC<WrapperProps> = ({

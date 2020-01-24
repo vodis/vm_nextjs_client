@@ -3,14 +3,14 @@ import Wrapper from "../../src/components/Wrapper/Wrapper";
 
 type PreferenceProps = {
   auth: {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    accessTo: boolean;
   };
-  router: object;
 };
 
-const Preference: React.FC<PreferenceProps> = ({ auth, router}) => {
+const Preference: React.FC<PreferenceProps> = ({ auth }) => {
   return (
-    <Wrapper auth={auth} router={router}>
+    <Wrapper auth={auth}>
       <h1>Verifying login</h1>
     </Wrapper>
   );

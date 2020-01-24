@@ -6,14 +6,14 @@ import Navbar from "../src/components/Navbar/Navbar";
 
 type IndexPageProps = {
   auth: {
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
+    accessTo: boolean;
   };
-  router: object;
 };
 
-const IndexPage: React.FC<IndexPageProps> = ({ auth, router }) => {
+const IndexPage: React.FC<IndexPageProps> = ({ auth }) => {
   return (
-    <Wrapper auth={auth} router={router} >
+    <Wrapper auth={auth}>
       <Layout>
         <header className="header">
           <Navbar />

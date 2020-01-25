@@ -12,11 +12,31 @@ export function redirect(routeType: string, access: boolean, router: any) {
     case "user":
       console.log("@Route to User");
       break;
+
     case "admin":
-      console.log("@Route to Admin");
-      access === true && router.push(`/${routes.rootAdmin}/dashboard`);
-      access === false && router.push(`/${routes.rootAdmin}`);
+      console.log("@Route to Admin", access, router);
+
+      if (typeof access === "boolean") {
+
+        if (access && router.pathname === `/${routes.rootAdmin}`) {
+          console.log('I');
+          router.push(`/${routes.rootAdmin}/dashboard`);
+        }
+
+        if (!access) {
+          console.log('II')
+          router.push(`/${routes.rootAdmin}`);
+        }
+
+      } 
+
+      if (access === undefined) {
+        console.log('III');
+        router.push(`/${routes.rootAdmin}`);
+      }
+
       break;
+      
     default:
       console.log("@Route to Common");
       break;

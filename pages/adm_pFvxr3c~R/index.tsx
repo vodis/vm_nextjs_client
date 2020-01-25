@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
 import Layout from "../../src/components/Layout/Layout";
 import AdminForm from "../../src/components/Auth/Admin";

@@ -1,5 +1,5 @@
 import React from "react";
-import { withRedux } from "../src/providers/withRedux";
+import { withRedux } from "../src/hok/withRedux";
 import Wrapper from "../src/components/Wrapper/Wrapper";
 import Layout from "../src/components/Layout/Layout";
 import Navbar from "../src/components/Navbar/Navbar";

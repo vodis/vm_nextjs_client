@@ -11,6 +11,7 @@ type DashboardProps = {
 const Dashboard: React.FC<DashboardProps> = ({ auth }) => {
   return (
     <Wrapper auth={auth}>
+      { console.log(auth) }
       <h1>Verifying login</h1>
     </Wrapper>
   );

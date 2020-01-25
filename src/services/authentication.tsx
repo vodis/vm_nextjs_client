@@ -64,10 +64,10 @@ class Authentication {
         });
         const result = await data.json();
 
-        return result[protectedRoutes];
+        return result;
       }
 
-      return true;
+      return {};
     }
   }
 }

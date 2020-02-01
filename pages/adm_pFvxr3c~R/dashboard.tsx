@@ -1,20 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
+import Authentication from '../../src/services/authentication';
 
-type DashboardProps = {
-  auth: {
-    isAuthenticated: boolean;
-    accessTo: boolean;
-  };
-};
+interface StatelessPage<P = {}> extends React.SFC<P> {
+  getInitialProps?: (ctx: any) => Promise<P>
+}
 
-const Dashboard: React.FC<DashboardProps> = ({ auth }) => {
+const Dashboard: StatelessPage<{}> = ({ auth }: any) => {
+
   return (
-    <Wrapper auth={auth}>
-      { console.log(auth) }
-      <h1>Verifying login</h1>
+    <Wrapper auth={auth} >
+      <div>Next stars: ...</div>
     </Wrapper>
   );
 };
+
+Dashboard.getInitialProps = async (ctx: any) => {
+  const auth = await Authentication.getSession(ctx);
+  return auth;
+}
 
 export default Dashboard;

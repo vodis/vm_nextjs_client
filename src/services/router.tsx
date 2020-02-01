@@ -7,28 +7,24 @@ export function matches(route: string) {
   };
 }
 
-export function redirect(routeType: string, access: boolean, router: any) {
+export function redirect(routeType: any, access: any, router: any) {
   switch (routeType) {
     case "user":
       console.log("@Route to User");
       break;
 
     case "admin":
-      console.log("@Route to Admin", access, router);
+      console.log("@Route to Admin");
 
-      if (typeof access === "boolean") {
+      if (access && router.pathname === `/${routes.rootAdmin}`) {
+        console.log('I');
+        router.push(`/${routes.rootAdmin}/dashboard`);
+      }
 
-        if (access && router.pathname === `/${routes.rootAdmin}`) {
-          console.log('I');
-          router.push(`/${routes.rootAdmin}/dashboard`);
-        }
-
-        if (!access) {
-          console.log('II')
-          router.push(`/${routes.rootAdmin}`);
-        }
-
-      } 
+      if (!access) {
+        console.log('II')
+        router.push(`/${routes.rootAdmin}`);
+      }
 
       if (access === undefined) {
         console.log('III');

@@ -11,7 +11,6 @@ const initialState: AuthStoreTypes = {
 export function authReducer(state = initialState, action: AuthActionTypes): AuthStoreTypes {
   switch (action.type) {
     case AUTH_CREDENTIALS:
-      debugger
       return {
         ...state,
         credentials: action.payload,

@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import { useDispatch } from 'react-redux';
 import { withRedux } from '../../hok/withRedux';
-
-// import CombineRoutes from "../../routes/common.route";
 import { CombineRoutes } from "../../services/lazy";
 
 import "./Wrapper.scss";

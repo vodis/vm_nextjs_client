@@ -1,19 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Wrapper from "../../src/components/Wrapper/Wrapper";
+import Authentication from '../../src/services/authentication';
 
-type PreferenceProps = {
-  auth: {
-    isAuthenticated: boolean;
-    accessTo: boolean;
-  };
-};
+interface StatelessPage<P = {}> extends React.SFC<P> {
+  getInitialProps?: (ctx: any) => Promise<P>
+}
 
-const Preference: React.FC<PreferenceProps> = ({ auth }) => {
+const Preference: StatelessPage<{}> = ({ auth }: any) => {
   return (
-    <Wrapper auth={auth}>
-      <h1>Verifying login</h1>
+    <Wrapper auth={auth} >
+      <div>Next stars: ...</div>
     </Wrapper>
   );
 };
+
+Preference.getInitialProps = async (ctx: any) => {
+  const auth = await Authentication.getSession(ctx);
+  return auth;
+}
 
 export default Preference;

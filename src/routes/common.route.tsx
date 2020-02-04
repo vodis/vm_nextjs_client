@@ -27,7 +27,7 @@ const CombineRoutes: React.FC<WithRouterProps & CombineRoutesProps> = ({
   useEffect(() => {
     if (getRootRules && auth.accessTo) {
       redirect(getRootRules, auth.accessTo, router);
-    } else if (auth.accessTo === undefined) {
+    } else if (auth && auth.accessTo === undefined) {
       redirect(getRootRules, undefined, router);
     }
     setLoading(false);
@@ -37,13 +37,9 @@ const CombineRoutes: React.FC<WithRouterProps & CombineRoutesProps> = ({
     return <>Loading...</>;
   }
 
-  !getRootRules && console.log('I');
-  !loading && !auth.accessTo && console.log('II');
-  (router.pathname !== `/${routes.rootAdmin}` && auth.accessTo) && console.log('III');
-
   if (!getRootRules 
     || (!loading && !auth.accessTo && router.pathname === `/${routes.rootAdmin}`)
-    || (router.pathname !== `/${routes.rootAdmin}` && auth.accessTo)) {
+    || (router.pathname !== `/${routes.rootAdmin}` && auth && auth.accessTo)) {
     return <>{children}</>;
   }
 

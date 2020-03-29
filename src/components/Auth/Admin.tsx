@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Router from 'next/router'
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -50,6 +51,7 @@ export default function Admin() {
   useEffect(() => {
     if (results.token) {
       authentication.setSession(results);
+      Router.push('/adm_pFvxr3c~R/dashboard');
     }
   }, [loading]);
 

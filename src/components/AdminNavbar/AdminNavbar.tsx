@@ -49,7 +49,7 @@ const StyledBadge = withStyles((theme: Theme) =>
     }),
 )(Badge);
 
-const AdminNavbar = () => {
+const AdminNavbar = ({ userIcon }: any) => {
     const classes = useStyles();
 
     return (
@@ -65,7 +65,7 @@ const AdminNavbar = () => {
                 }}
                 variant="dot"
             >
-                <Avatar aria-label="recipe" className={classes.avatar} src="https://lh3.googleusercontent.com/proxy/4DhOMpaByUAu42u5WsUGi8jCENpMVuT0uFBxZcQy0-r8Cow2lINb6oBxpMxDlX9IN61AyarmszPBxtN_OFQB9qktWuElfCTB-ZXKSFm7cMPRfMF3cu1sujo">
+                <Avatar aria-label="recipe" className={classes.avatar} src={userIcon}>
                     R
                 </Avatar>
             </StyledBadge>
